@@ -574,7 +574,8 @@ UTF8PROC_DLLEXPORT utf8proc_ssize_t utf8proc_decompose_custom(
         uc = custom_func(uc, custom_data);   /* user-specified custom mapping */
       }
       decomp_result = utf8proc_decompose_char(
-        uc, buffer + wpos, (bufsize > wpos) ? (bufsize - wpos) : 0, options,
+        uc, buffer == NULL ? NULL : buffer + wpos,
+        (bufsize > wpos) ? (bufsize - wpos) : 0, options,
         &boundclass
       );
       if (decomp_result < 0) return decomp_result;
